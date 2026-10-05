@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brianza Garden · Giardiniere a Cantù e provincia di Como</title>
+<meta name="description" content="Brianza Garden: progettazione e manutenzione di giardini, terrazzi e balconi, potature e prato a rotoli a Cantù e dintorni. Richiedi un preventivo gratuito.">
+<style>
+:root{
+  --foresta:#1f3a2b; --muschio:#4d6b3a; --salvia:#dfe6d3; --terra:#7a5233; --fiore:#e8b93c; --carta:#fbfaf5; --testo:#1d2620;
+  --serif:Georgia,"Times New Roman",serif; --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--testo);background:var(--carta);line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--fiore);outline-offset:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+
+/* Header */
+header{position:absolute;top:0;left:0;right:0;z-index:5;padding:18px 0;color:#fff}
+header .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700;text-decoration:none}
+.tel{font-weight:600;text-decoration:none;border:1.5px solid rgba(255,255,255,.7);padding:8px 16px;border-radius:999px}
+
+/* Hero */
+.hero{min-height:88vh;display:flex;align-items:flex-end;color:#fff;position:relative;
+  background:linear-gradient(180deg,rgba(15,30,20,.55),rgba(15,30,20,.82)),url("https://i.imgur.com/vVFqBS1.png") center/cover no-repeat,var(--foresta)}
+.hero .wrap{padding-bottom:72px;padding-top:140px}
+.hero h1{font-family:var(--serif);font-size:clamp(2.2rem,6vw,4.2rem);line-height:1.08;max-width:15ch;font-weight:700}
+.hero p{max-width:52ch;margin:20px 0 28px;font-size:1.1rem;color:#eef2e6}
+.btn{display:inline-block;background:var(--fiore);color:#1d1a0c;font-weight:700;padding:14px 26px;border:0;border-radius:8px;font-size:1rem;cursor:pointer;text-decoration:none}
+.btn:hover{background:#f1c75a}
+.btn.ghost{background:transparent;color:#fff;border:1.5px solid #fff;margin-left:10px}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
+
+/* Sezioni */
+section{padding:72px 0}
+h2{font-family:var(--serif);font-size:clamp(1.7rem,4vw,2.4rem);color:var(--foresta);margin-bottom:12px;line-height:1.2}
+.lead{max-width:60ch;color:#46524a;margin-bottom:36px}
+
+.servizi{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0;border-top:2px solid var(--foresta)}
+.servizi div{padding:24px 24px 24px 0;border-bottom:1px solid #cfd6c4}
+.servizi h3{font-family:var(--serif);font-size:1.25rem;color:var(--foresta);margin-bottom:6px}
+.servizi p{color:#46524a;font-size:.97rem}
+
+.chi{background:var(--salvia)}
+.chi .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.chi ul{list-style:none}
+.chi li{padding:12px 0;border-bottom:1px solid rgba(31,58,43,.2)}
+.chi li strong{display:block;color:var(--foresta)}
+
+.recensioni{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+blockquote{background:#fff;border-left:5px solid var(--muschio);padding:22px;border-radius:0 10px 10px 0;box-shadow:0 1px 3px rgba(0,0,0,.08)}
+blockquote p{margin-bottom:12px}
+blockquote footer{position:static;color:var(--terra);font-weight:600;font-size:.92rem;padding:0}
+.stelle{color:var(--fiore);letter-spacing:2px;margin-bottom:6px}
+
+.contatti .wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.orari{width:100%;border-collapse:collapse;margin-top:8px}
+.orari td{padding:7px 0;border-bottom:1px solid #d9dfce}
+.orari td:last-child{text-align:right}
+.chiuso{color:#a33}
+.badge{display:inline-block;background:var(--muschio);color:#fff;font-size:.85rem;padding:3px 12px;border-radius:999px;margin-bottom:14px}
+
+footer.main{background:var(--foresta);color:#cfdac3;text-align:center;padding:28px 20px;font-size:.9rem}
+
+/* Modulo preventivo */
+.overlay{position:fixed;inset:0;z-index:50;background:rgba(10,22,15,.72);display:flex;align-items:center;justify-content:center;padding:16px;overflow-y:auto}
+.overlay[hidden]{display:none}
+.modal{background:var(--carta);border-radius:14px;max-width:460px;width:100%;padding:30px 26px 26px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.4);animation:su .35s ease-out}
+@keyframes su{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.modal h2{font-size:1.6rem;margin-bottom:4px}
+.modal .sub{color:#46524a;margin-bottom:18px;font-size:.96rem}
+.chiudi{position:absolute;top:10px;right:12px;background:none;border:0;font-size:1.8rem;line-height:1;cursor:pointer;color:#555;padding:4px 10px}
+label{display:block;font-weight:600;font-size:.9rem;margin:12px 0 4px;color:var(--foresta)}
+input,select,textarea{width:100%;padding:11px 12px;border:1.5px solid #b9c3ad;border-radius:8px;font:inherit;background:#fff;color:var(--testo)}
+textarea{min-height:76px;resize:vertical}
+.modal .btn{width:100%;margin-top:18px}
+.privacy{font-size:.78rem;color:#667;margin-top:10px;text-align:center}
+.err{color:#a33;font-size:.85rem;margin-top:6px;min-height:1em}
+
+/* WhatsApp */
+.wa{position:fixed;right:18px;bottom:18px;z-index:40;width:60px;height:60px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.3);text-decoration:none}
+.wa:hover{transform:scale(1.07)}
+.wa svg{width:34px;height:34px;fill:#fff}
+.wa-tip{position:fixed;right:90px;bottom:30px;z-index:40;background:#fff;color:var(--testo);padding:8px 14px;border-radius:999px;font-size:.88rem;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+
+@media(max-width:760px){
+  .chi .wrap,.contatti .wrap{grid-template-columns:1fr;gap:28px}
+  .btn.ghost{margin:10px 0 0}
+  .wa-tip{display:none}
+  .tel{font-size:.9rem;padding:6px 12px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#">Brianza Garden</a>
+    <a class="tel" href="tel:+393348318446">334 831 8446</a>
+  </div>
+</header>
+
+<main>
+<div class="hero">
+  <div class="wrap">
+    <h1>Il giardino che hai in mente, curato nei dettagli.</h1>
+    <p>Giardinieri a Cantù e in provincia di Como. Progettiamo, realizziamo e manteniamo giardini, terrazzi e balconi, con prezzi onesti e un preventivo chiaro.</p>
+    <a class="btn" href="#preventivo" data-apri>Richiedi un preventivo</a>
+    <a class="btn ghost" href="https://wa.me/393348318446" target="_blank" rel="noopener">Scrivici su WhatsApp</a>
+  </div>
+</div>
+
+<section id="servizi">
+  <div class="wrap">
+    <h2>Cosa facciamo</h2>
+    <p class="lead">Dal sopralluogo al lavoro finito, con consigli pratici per far vivere bene le tue piante nel tempo.</p>
+    <div class="servizi">
+      <div><h3>Progettazione giardini</h3><p>Sopralluogo, progetto e preventivo in pochi giorni, con scelta di piante adatte a spazio ed esposizione.</p></div>
+      <div><h3>Terrazzi e balconi</h3><p>Rifacimento completo o nuovi allestimenti, con indicazioni per mantenere le piante in salute in ogni stagione.</p></div>
+      <div><h3>Prato a rotoli</h3><p>Posa di prato vero a rotoli per avere un giardino verde e uniforme senza lunghe attese.</p></div>
+      <div><h3>Potature</h3><p>Potatura di alberi, siepi e piante, con pulizia dell'area al termine del lavoro.</p></div>
+      <div><h3>Manutenzione del verde</h3><p>Cura regolare di giardini e terrazzi, anche con un piano annuale su misura.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chi">
+  <div class="wrap">
+    <div>
+      <h2>Una passione che si vede nel lavoro</h2>
+      <p>Chi ci ha scelto ci descrive con le stesse parole: precisione, affidabilità e voglia di consigliare. Ogni intervento parte dall'ascolto delle tue esigenze e finisce con uno spazio pulito e ordinato.</p>
+    </div>
+    <ul>
+      <li><strong>Preventivo chiaro</strong>Dopo il sopralluogo sai subito costi e tempi.</li>
+      <li><strong>Prezzi onesti</strong>Lo scrivono molti clienti nelle recensioni.</li>
+      <li><strong>Consigli su misura</strong>Ti spieghiamo come curare le piante dopo il lavoro.</li>
+      <li><strong>Area pulita</strong>Lasciamo il giardino in ordine a fine intervento.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="recensioni">
+  <div class="wrap">
+    <h2>Dicono di noi</h2>
+    <p class="lead">Recensioni lasciate dai clienti su Google Maps.</p>
+    <div class="recensioni">
+      <blockquote><div class="stelle" aria-label="5 stelle">★★★★★</div><p>Ha eseguito la posa di prato vero a rotoli, risultato eccellente. Il mio angolo di giardino è rinato! Prezzi onesti.</p><footer>Daniela Iunco</footer></blockquote>
+      <blockquote><div class="stelle" aria-label="5 stelle">★★★★★</div><p>Rifacimento del balcone con grande perizia tecnica: dal progetto con preventivo all'esecuzione sono passati solo pochi giorni.</p><footer>Lodovica Schiera</footer></blockquote>
+      <blockquote><div class="stelle" aria-label="5 stelle">★★★★★</div><p>Progettazione e realizzazione del mio terrazzo impeccabili. Raro trovare un professionista così appassionato e attento ai dettagli.</p><footer>Sara Fambri</footer></blockquote>
+      <blockquote><div class="stelle" aria-label="5 stelle">★★★★★</div><p>Potatura di 4 alberi fatta con massima precisione. Giardino lasciato pulito e qualche consiglio in più sulle altre piante.</p><footer>Aneta Jurczenia</footer></blockquote>
+      <blockquote><div class="stelle" aria-label="5 stelle">★★★★★</div><p>Da qualche anno cura il mio terrazzo con bellissimi risultati. Le mie piante ringraziano.</p><footer>Anna Salvadé</footer></blockquote>
+      <blockquote><div class="stelle" aria-label="5 stelle">★★★★★</div><p>Un vero professionista del verde: competenza, precisione, onestà e una profonda gentilezza.</p><footer>Simona Rigamonti</footer></blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="contatti" id="contatti">
+  <div class="wrap">
+    <div>
+      <span class="badge">Aperto adesso</span>
+      <h2>Dove siamo</h2>
+      <p>Via G. Cesare, 22063 Cantù (CO)<br>Telefono: <a href="tel:+393348318446"><strong>334 831 8446</strong></a></p>
+      <p style="margin:14px 0 22px"><a href="https://www.google.com/maps/search/?api=1&query=Via+G.+Cesare+22063+Cant%C3%B9+CO" target="_blank" rel="noopener">Apri su Google Maps</a></p>
+      <a class="btn" href="#preventivo" data-apri>Richiedi un preventivo</a>
+    </div>
+    <div>
+      <h2>Orari</h2>
+      <table class="orari">
+        <tr><td>Lunedì</td><td>07:00–19:30</td></tr>
+        <tr><td>Martedì</td><td>07:00–19:30</td></tr>
+        <tr><td>Mercoledì</td><td>07:00–19:30</td></tr>
+        <tr><td>Giovedì</td><td>07:00–19:30</td></tr>
+        <tr><td>Venerdì</td><td>07:00–19:30</td></tr>
+        <tr><td>Sabato</td><td>07:00–19:30</td></tr>
+        <tr><td>Domenica</td><td class="chiuso">Chiuso</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="main">© <span id="anno"></span> Brianza Garden · Via G. Cesare, Cantù (CO) · 334 831 8446</footer>
+
+<!-- Modulo preventivo (si apre subito all'ingresso) -->
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-labelledby="mt" hidden>
+  <div class="modal">
+    <button class="chiudi" type="button" id="chiudi" aria-label="Chiudi">×</button>
+    <h2 id="mt">Preventivo gratuito</h2>
+    <p class="sub">Raccontaci cosa ti serve: ti rispondiamo su WhatsApp o per telefono.</p>
+    <div id="fq" novalidate>
+      <label for="nome">Nome e cognome</label>
+      <input id="nome" autocomplete="name">
+      <label for="tel">Telefono</label>
+      <input id="tel" type="tel" autocomplete="tel" inputmode="tel">
+      <label for="serv">Di cosa hai bisogno?</label>
+      <select id="serv">
+        <option>Progettazione giardino</option>
+        <option>Terrazzo o balcone</option>
+        <option>Posa prato a rotoli</option>
+        <option>Potatura</option>
+        <option>Manutenzione del verde</option>
+        <option>Altro</option>
+      </select>
+      <label for="comune">Comune</label>
+      <input id="comune" placeholder="Es. Cantù">
+      <label for="msg">Note (facoltative)</label>
+      <textarea id="msg" placeholder="Metri quadri, tipo di piante, tempi desiderati…"></textarea>
+      <div class="err" id="err" role="alert"></div>
+      <button class="btn" type="button" id="invia">Invia la richiesta su WhatsApp</button>
+      <p class="privacy">Useremo i tuoi dati solo per risponderti sul preventivo.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Bubble WhatsApp -->
+<span class="wa-tip">Scrivici su WhatsApp</span>
+<a class="wa" href="https://wa.me/393348318446?text=Buongiorno%2C%20vorrei%20un%20preventivo." target="_blank" rel="noopener" aria-label="Scrivici su WhatsApp">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.4.7 4.7 1.9 6.600L3 29l7.100-2.100c1.800 1 3.800 1.500 5.900 1.500 7 0 12.700-5.600 12.700-12.500S23 3 16 3zm0 22.800c-1.900 0-3.700-.5-5.300-1.500l-.4-.2-4.200 1.200 1.200-4.100-.3-.4a10 10 0 0 1-1.600-5.300C5.400 10 10.200 5.300 16 5.300S26.600 10 26.600 15.700 21.800 25.800 16 25.800zm5.800-7.500c-.3-.2-1.900-.9-2.200-1-.3-.1-.5-.2-.7.200-.2.300-.8 1-1 1.200-.2.200-.4.200-.7.100-.3-.2-1.400-.5-2.600-1.600-1-.9-1.600-1.900-1.800-2.200-.2-.3 0-.5.100-.7l.5-.5c.2-.2.200-.3.300-.5.100-.2.100-.4 0-.5l-1-2.300c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.100-.8.400-.3.300-1.100 1.100-1.100 2.600s1.100 3 1.300 3.200c.2.200 2.200 3.400 5.400 4.700 3.200 1.300 3.200.9 3.700.8.600-.1 1.900-.8 2.100-1.500.3-.7.300-1.400.2-1.500-.1-.2-.3-.2-.6-.4z"/></svg>
+</a>
+
+<script>
+(function(){
+  var NUM = "393348318446";
+  var ov = document.getElementById("overlay");
+  function apri(){ ov.hidden = false; document.body.style.overflow = "hidden"; setTimeout(function(){ document.getElementById("nome").focus(); }, 50); }
+  function chiudi(){ ov.hidden = true; document.body.style.overflow = ""; }
+
+  document.getElementById("anno").textContent = new Date().getFullYear();
+
+  // Si apre subito appena l'utente entra
+  apri();
+
+  document.getElementById("chiudi").addEventListener("click", chiudi);
+  ov.addEventListener("click", function(e){ if(e.target === ov) chiudi(); });
+  document.addEventListener("keydown", function(e){ if(e.key === "Escape" && !ov.hidden) chiudi(); });
+  document.querySelectorAll("[data-apri]").forEach(function(a){
+    a.addEventListener("click", function(e){ e.preventDefault(); apri(); });
+  });
+
+  document.getElementById("invia").addEventListener("click", function(){
+    var nome = document.getElementById("nome").value.trim();
+    var tel = document.getElementById("tel").value.trim();
+    var err = document.getElementById("err");
+    if(!nome){ err.textContent = "Inserisci il tuo nome."; return; }
+    if(tel.replace(/\D/g,"").length < 8){ err.textContent = "Inserisci un numero di telefono valido."; return; }
+    err.textContent = "";
+    var testo = "Richiesta preventivo - Brianza Garden\n" +
+      "Nome: " + nome + "\n" +
+      "Telefono: " + tel + "\n" +
+      "Servizio: " + document.getElementById("serv").value + "\n" +
+      "Comune: " + (document.getElementById("comune").value.trim() || "-") + "\n" +
+      "Note: " + (document.getElementById("msg").value.trim() || "-");
+    window.open("https://wa.me/" + NUM + "?text=" + encodeURIComponent(testo), "_blank", "noopener");
+    chiudi();
+  });
+})();
+</script>
+</body>
+</html>
